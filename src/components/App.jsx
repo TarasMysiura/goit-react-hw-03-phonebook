@@ -6,16 +6,9 @@ import { TitleH2 } from './App.styled';
 import { Filter } from './Filter/Filter';
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: JSON.parse(localStorage.getItem('contacts')),
     filter: '',
   };
-  componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
-    }
-  }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts)
@@ -65,7 +58,7 @@ export class App extends Component {
 
   render() {
     const filteredContacts = this.onFilteredContacts();
-    console.log(this.state.contacts.length);
+    console.log(this.state.contacts);
     const { filter } = this.state;
     return (
       <div

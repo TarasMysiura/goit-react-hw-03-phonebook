@@ -6,7 +6,7 @@ import { TitleH2 } from './App.styled';
 import { Filter } from './Filter/Filter';
 export class App extends Component {
   state = {
-    contacts: (() => JSON.parse(localStorage.getItem('contacts')) ?? []),
+    contacts: JSON.parse(localStorage.getItem('contacts')) ?? [],
     filter: '',
   };
 
@@ -47,6 +47,8 @@ export class App extends Component {
 
   onFilteredContacts = () => {
     const { filter, contacts } = this.state;
+
+    console.log(this.state.contacts);
     const normalFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
@@ -57,8 +59,10 @@ export class App extends Component {
   //
 
   render() {
+    // const currentLocal = JSON.parse(localStorage.getItem('contacts'));
+
     const filteredContacts = this.onFilteredContacts();
-    console.log(this.state.contacts);
+    console.log();
     const { filter } = this.state;
     return (
       <div

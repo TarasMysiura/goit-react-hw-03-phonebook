@@ -6,7 +6,7 @@ import { TitleH2 } from './App.styled';
 import { Filter } from './Filter/Filter';
 export class App extends Component {
   state = {
-    contacts: JSON.parse(localStorage.getItem('contacts')),
+    contacts: (() => JSON.parse(localStorage.getItem('contacts')) ?? []),
     filter: '',
   };
 

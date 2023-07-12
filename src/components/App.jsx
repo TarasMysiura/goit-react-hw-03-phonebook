@@ -88,13 +88,13 @@ export class App extends Component {
         <TitleH2>Contacts</TitleH2>
 
         {this.state.contacts.length > 0 && (
-          <Filter value={filter} onChangeFilter={this.onChangeFilter} />
-        )}
-        {this.state.contacts.length > 0 && (
-          <ContactList
-            onRemoveContact={this.onRemoveContact}
-            filteredContacts={filteredContacts}
-          />
+          <>
+            <Filter value={filter} onChangeFilter={this.onChangeFilter} />
+            <ContactList
+              onRemoveContact={this.onRemoveContact}
+              filteredContacts={filteredContacts}
+            />
+          </>
         )}
       </div>
     );

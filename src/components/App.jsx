@@ -87,7 +87,7 @@ export class App extends Component {
         ></PhonebookForm>
         <TitleH2>Contacts</TitleH2>
 
-        {this.state.contacts.length > 0 ?? (
+        {this.state.contacts.length > 0 && (
           <Filter value={filter} onChangeFilter={this.onChangeFilter} />
         )}
         {this.state.contacts.length > 0 && (

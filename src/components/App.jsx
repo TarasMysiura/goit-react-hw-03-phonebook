@@ -6,9 +6,16 @@ import { TitleH2 } from './App.styled';
 import { Filter } from './Filter/Filter';
 export class App extends Component {
   state = {
-    contacts: JSON.parse(localStorage.getItem('contacts')) ?? [],
+    contacts: [],
     filter: '',
   };
+
+  componentDidMount(prevProps, prevState) {
+    const stringifiedContacts = localStorage.getItem('contacts');
+    const contacts = JSON.parse(stringifiedContacts) ?? [];
+
+    this.setState({ contacts });
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts)
@@ -48,7 +55,6 @@ export class App extends Component {
   onFilteredContacts = () => {
     const { filter, contacts } = this.state;
 
-    console.log(this.state.contacts);
     const normalFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
@@ -62,7 +68,6 @@ export class App extends Component {
     // const currentLocal = JSON.parse(localStorage.getItem('contacts'));
 
     const filteredContacts = this.onFilteredContacts();
-    console.log();
     const { filter } = this.state;
     return (
       <div
@@ -82,10 +87,8 @@ export class App extends Component {
         ></PhonebookForm>
         <TitleH2>Contacts</TitleH2>
 
-        {this.state.contacts.length > 0 ? (
+        {this.state.contacts.length > 0 ?? (
           <Filter value={filter} onChangeFilter={this.onChangeFilter} />
-        ) : (
-          alert('Your phonebook is empty. Add first contact!')
         )}
         {this.state.contacts.length > 0 && (
           <ContactList

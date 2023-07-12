@@ -9,7 +9,6 @@ import {
 } from './PhonebookForm.styled';
 import PropTypes from 'prop-types';
 
-
 export class PhonebookForm extends Component {
   state = {
     name: '',
@@ -49,6 +48,7 @@ export class PhonebookForm extends Component {
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               //   title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               value={this.state.name}
+              autoComplete="true"
               required
             />
           </Label>
